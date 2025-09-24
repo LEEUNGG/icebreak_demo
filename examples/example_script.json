@@ -1,0 +1,167 @@
+[
+  {
+    "type": "MessageNode",
+    "id": "hook",
+    "content": {
+      "text": "I’ve got some rules for you—wanna play by them or break them? 😈"
+    },
+    "next": "consent_check"
+  },
+
+  {
+    "type": "ReactionNode",
+    "id": "consent_check",
+    "conditions": [
+      {
+        "label": "positive",
+        "patterns": ["yes", "sure", "play", "break"],
+        "next": "set_rules"
+      },
+      {
+        "label": "hesitant",
+        "patterns": ["what", "depends", "maybe", "tell me"],
+        "next": "tease_hesitant"
+      },
+      {
+        "label": "negative",
+        "patterns": ["no", "not", "pass"],
+        "next": "negative_end"
+      }
+    ]
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "tease_hesitant",
+    "content": {
+      "text": "These rules are all about me controlling your cock and making you beg for release. It's gonna get filthy—still wanna dive in? 🍆💦"
+    },
+    "next": "consent_check2"
+  },
+
+  {
+    "type": "ReactionNode",
+    "id": "consent_check2",
+    "conditions": [
+      {
+        "label": "positive",
+        "patterns": ["yes", "dive", "in"],
+        "next": "set_rules"
+      },
+      {
+        "label": "hesitant",
+        "patterns": ["still", "depends"],
+        "next": "negative_end"
+      },
+      {
+        "label": "negative",
+        "patterns": ["no", "not"],
+        "next": "negative_end"
+      }
+    ]
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "negative_end",
+    "content": {
+      "text": "Alright, your loss! Hit me up when you're ready for some real fun. 😉"
+    },
+    "next": "script_end"
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "set_rules",
+    "content": {
+      "text": "Perfect, you naughty thing! Rules: 1. No stroking your dick without my command. 2. Send close-ups of your throbbing cock when I dare you. 3. Cum only if I say so—or face the consequences. Got it? 🔥"
+    },
+    "next": "rules_reaction"
+  },
+
+  {
+    "type": "ReactionNode",
+    "id": "rules_reaction",
+    "conditions": [
+      {
+        "label": "positive",
+        "patterns": ["yes", "got it", "ready"],
+        "next": "gameplay"
+      },
+      {
+        "label": "hesitant",
+        "patterns": ["what consequences", "depends"],
+        "next": "explain_consequences"
+      },
+      {
+        "label": "negative",
+        "patterns": ["no", "too much"],
+        "next": "negative_end"
+      }
+    ]
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "explain_consequences",
+    "content": {
+      "text": "Consequences? I might make you edge for hours or deny you entirely. But obey, and you get treats like my wet pussy pics. Let's go! 😏"
+    },
+    "next": "gameplay"
+  },
+
+  {
+    "type": "ChoiceNode",
+    "id": "gameplay",
+    "prompt": "Now, choose: play by the rules or break them right off the bat?",
+    "branches": [
+      {
+        "condition": "play by them",
+        "next": "follow_dare"
+      },
+      {
+        "condition": "break them",
+        "next": "break_tease"
+      }
+    ]
+  },
+
+  {
+    "type": "ActionNode",
+    "id": "follow_dare",
+    "action": "request_media",
+    "parameters": {
+      "prompt": "Good boy! Follow rule 2: send me a pic of your hard cock right now. Make it sexy. 📸🍆"
+    },
+    "next": "escalation"
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "break_tease",
+    "content": {
+      "text": "Oh, breaking already? Naughty! Here's a little tease of my tits as punishment... but imagine what's next.",
+      "media": ["tease_tits.jpg"]
+    },
+    "next": "escalation"
+  },
+
+  {
+    "type": "MessageNode",
+    "id": "escalation",
+    "content": {
+      "text": "Fuck, this is getting me so wet. You've earned a peek at something dirtier—but it's my secret stash. Ready for the real fun?"
+    },
+    "next": "ppv_tease"
+  },
+  
+  {
+    "type": "MessageNode",
+    "id": "ppv_tease",
+    "content": {
+      "text": "Unlock this video of me fingering myself while thinking of your cock? It's my ultimate rule-breaker reward—just $15 to see me cum hard. Worth every penny? 💦🔒",
+      "media": ["locked_fingering_video.mp4"]
+    },
+    "next": "script_end"
+  }
+]
