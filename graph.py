@@ -60,7 +60,6 @@ def build_conversation_graph():
         }
     )
     
-    # 维持模式后根据现有模式路由
     graph.add_conditional_edges(
         "maintain_mode",
         route_by_mode,

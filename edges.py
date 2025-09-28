@@ -14,10 +14,10 @@ def should_classify(state: ConversationState) -> Literal["classify", "maintain"]
     else:
         turn_count = state.get("turn_count", 0)
         if turn_count % 2 == 0:
-            logger.info(f"轮次 {turn_count} 为偶数，执行分类")
+            logger.debug(f"轮次 {turn_count} 为偶数，执行分类")
             return "classify"
         else: 
-            logger.info(f"轮次 {turn_count} 为奇数，维持当前模式")
+            logger.debug(f"轮次 {turn_count} 为奇数，维持当前模式")
             return "maintain"
 
 def route_by_mode(state: ConversationState) -> Literal["leader", "listener"]:
@@ -31,7 +31,7 @@ def route_by_mode(state: ConversationState) -> Literal["leader", "listener"]:
         mode = "listener"
         logger.warning(f"无效的conversation_mode，使用默认值: {mode}")
     
-    logger.info(f"route_by_mode结果: {mode}")
+    logger.debug(f"route_by_mode结果: {mode}")
     return mode
 
 def route_by_node_type(state: ConversationState) -> Union[Literal["message", "reaction", "choice", "action", "end"]]:
@@ -43,7 +43,7 @@ def route_by_node_type(state: ConversationState) -> Union[Literal["message", "re
     
     # 如果节点类型为空或None，返回end
     if not node_type:
-        logger.info("节点类型为空，路由到END")
+        logger.debug("节点类型为空，路由到END")
         return "end"
     
     # 转换节点类型名称到简短版本
@@ -64,5 +64,5 @@ def route_by_node_type(state: ConversationState) -> Union[Literal["message", "re
     if not route_target:
         logger.warning(f"未知节点类型: {node_type}，路由到END")
         return "end"
-    logger.info(f"根据节点类型路由结果: {route_target}")
+    logger.debug(f"根据节点类型路由结果: {route_target}")
     return route_target

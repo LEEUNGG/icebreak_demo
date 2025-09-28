@@ -32,9 +32,6 @@ class ConversationState(MessagesState):
     choice_node_status: Optional[str] = "ask"
 
     # usedScript
-    # usedScript: Optional[List[Dict[str, Any]]] = None
-
-    # usedScript
     noScript: Optional[str] = "false"
 
     # creator background

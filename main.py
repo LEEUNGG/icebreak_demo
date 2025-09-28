@@ -6,16 +6,15 @@ import logging
 import os
 from dotenv import load_dotenv
 from graph import build_conversation_graph
-from langchain_core.messages import HumanMessage, AIMessage
-import sys
-
-# 加载环境变量
+from langchain_core.messages import AIMessage
 load_dotenv()
 
-# 配置日志
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('conversation.log'), 
+    ]
 )
 
 class ConversationBot:
@@ -92,29 +91,17 @@ def print_separator():
     """打印分隔线"""
     print("\n" + "="*60)
 
-def print_bot_response(response: str, info: dict):
-    """格式化打印bot回复和状态信息"""
+def print_bot_response(response: str):
+    """格式化打印bot回复"""
     print_separator()
     print("🤖 Bot回复:")
     print(f"   {response}")
-    print(f"\n📊 状态信息:")
-    print(f"   轮次: {info['turn_count']} | 模式: {info['conversation_mode']} | 消息数: {info['total_messages']}")
-    if info.get('current_node_id'):
-        print(f"   当前节点: {info['current_node_id']} ({info.get('current_node_type', 'Unknown')})")
-    else:
-        print("   当前节点: 未指定")
     print_separator()
 
 def run_interactive_conversation():
     """运行交互式对话"""
-    # 检查API密钥
-    if not os.getenv("DASHSCOPE_API_KEY"):
-        print("❌ 错误: DASHSCOPE_API_KEY 环境变量未设置")
-        return
-    
     print("🎯 OnlyFans创作者AI聊天机器人")
     print("💡 输入 'quit' 或 'exit' 退出对话")
-    print("💡 输入 'info' 查看详细状态信息")
     print("💡 输入 'reset' 重置对话状态")
     
     # 初始化bot
@@ -133,14 +120,6 @@ def run_interactive_conversation():
                 print("\n👋 再见！感谢与我聊天~")
                 break
             
-            # 检查信息命令
-            if user_input.lower() in ['info', '信息']:
-                info = bot.get_conversation_info()
-                print(f"\n📈 详细状态信息:")
-                for key, value in info.items():
-                    print(f"   {key}: {value}")
-                continue
-            
             # 检查重置命令
             if user_input.lower() in ['reset', '重置']:
                 bot = ConversationBot()
@@ -154,10 +133,9 @@ def run_interactive_conversation():
             
             # 发送消息并获取回复
             response = bot.send_message(user_input)
-            info = bot.get_conversation_info()
             
             # 打印回复
-            print_bot_response(response, info)
+            print_bot_response(response)
             
         except KeyboardInterrupt:
             print("\n\n👋 对话被中断，再见！")

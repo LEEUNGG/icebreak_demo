@@ -2,11 +2,11 @@
 节点函数模块
 定义图中各个节点的处理逻辑
 """
-from typing import Dict, Any, List
+from typing import Dict, Any
 from langchain_core.messages import HumanMessage, AIMessage
 from script_utils import (load_script_from_examples, get_type_by_id, get_node_text_by_id, get_next_node_id, get_node_by_id)  
 from state import ConversationState
-from models import LLMFactory, DEEPSEEK_CONFIG, QWEN_FLASH_CONFIG
+from models import LLMFactory, DEEPSEEK_V3_1_TERMINUS_CONFIG
 from prompts import (
     ENGAGEMENT_CLASSIFIER_LEADER_PROMPT,
     ENGAGEMENT_CLASSIFIER_LISTENER_PROMPT,
@@ -18,8 +18,6 @@ from prompts import (
     SCRIPT_EXECUTION_MODE_ACTION_PROMPT
 )
 import logging
-import os
-from langchain_community.chat_models.tongyi import ChatTongyi
 import requests
 
 logger = logging.getLogger(__name__)
@@ -38,7 +36,7 @@ def engagement_classifier_node(state: ConversationState) -> Dict[str, Any]:
     try:
         messages = state.get("messages", [])
                 
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
 
         if state.get("conversation_mode", "leader") == "leader":
             chain = ENGAGEMENT_CLASSIFIER_LEADER_PROMPT | llm
@@ -69,7 +67,7 @@ def engagement_classifier_node(state: ConversationState) -> Dict[str, Any]:
         logger.error(f"分类器执行失败: {e}")
         mode = "listener"
     
-    logger.info(f"engagement_classifier_node结果: {mode}")
+    logger.debug(f"engagement_classifier_node结果: {mode}")
     
     return {
         "conversation_mode": mode
@@ -78,18 +76,18 @@ def engagement_classifier_node(state: ConversationState) -> Dict[str, Any]:
 def maintain_mode_node(state: ConversationState) -> Dict[str, Any]:
     current_mode = state.get("conversation_mode", "listener")
     if not state.get("conversation_mode"):
-        logger.info(f"maintain_mode_node: {current_mode}")  
+        logger.debug(f"maintain_mode_node: {current_mode}")  
         return {"conversation_mode": "listener"}
 
     if state.get("noScript", "false") == "true":
-        logger.info(f"maintain_mode_node: no script any more")
+        logger.debug(f"maintain_mode_node: no script any more")
         return {"conversation_mode": "listener"}
     return {"conversation_mode": current_mode}
 
 def listener_node(state: ConversationState) -> Dict[str, Any]:
     try:
         messages = state.get("messages", [])
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
         chain = LISTENER_MODE_PROMPT | llm
         response = chain.invoke(
             {
@@ -97,6 +95,8 @@ def listener_node(state: ConversationState) -> Dict[str, Any]:
                 "creator_background_info": state.get("creator_background", "")
             }
         ) 
+        print(response)
+        
         if hasattr(response, 'content'):
             ai_message = AIMessage(content=response.content)
         else:
@@ -109,7 +109,7 @@ def listener_node(state: ConversationState) -> Dict[str, Any]:
         logger.error(f"Listener模式执行失败: {e}")
         mock_response = f"很抱歉，我现在无法回复。让我们重新开始吧！"
         ai_message = AIMessage(content=mock_response)
-    logger.info(f"Listener模式回复: {ai_message.content[:100]}...")
+    logger.debug(f"Listener模式回复: {ai_message.content[:100]}...")
     return {
         "messages": [ai_message],
         "turn_count": state.get("turn_count", 0) + 1
@@ -120,27 +120,26 @@ def determine_node_type_node(state: ConversationState) -> Dict[str, Any]:
     节点类型判断节点
     以及加载剧本
     """
-    logger.info("执行节点类型判断")
+    logger.debug("执行节点类型判断")
 
     if state.get("script") is None:
-        logger.info("剧本不存在，从examples文件夹加载")
+        logger.debug("剧本不存在，从examples文件夹加载")
         state["script"] = load_script_from_examples()
 
     current_node_id = state.get("current_node_id", "")
     
     if not current_node_id:
         current_node_id = state["script"][0].get("id", None)
-        logger.info(f"current_node不存在，使用第一个节点: {current_node_id}")
+        logger.debug(f"current_node不存在，使用第一个节点: {current_node_id}")
 
     current_node_type = get_type_by_id(state["script"], current_node_id)
 
-
-    logger.info(f"determine_node_type_node结果")
-    logger.info(f"current_node_id: {current_node_id}")
-    logger.info(f"current_node_type: {current_node_type}")
+    logger.debug(f"determine_node_type_node结果")
+    logger.debug(f"current_node_id: {current_node_id}")
+    logger.debug(f"current_node_type: {current_node_type}")
     current_node = get_node_by_id(state["script"], current_node_id)
-    logger.info(f"current_node: {current_node}")
-    logger.info(f"determine_node_type_node结束")
+    logger.debug(f"current_node: {current_node}")
+    logger.debug(f"determine_node_type_node结束")
         
     return {
         "current_node_id": current_node_id,
@@ -153,7 +152,7 @@ def determine_node_type_node(state: ConversationState) -> Dict[str, Any]:
 def script_execution_message_node(state: ConversationState) -> Dict[str, Any]:  
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
         
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_MESSAGE_PROMPT | llm
@@ -185,11 +184,14 @@ def script_execution_message_node(state: ConversationState) -> Dict[str, Any]:
         next_node_id = None
         next_node_type = None
 
-    logger.info(f"script_execution_message_node结果")
-    logger.info(f"response: {response}")
-    logger.info(f"next_node_id: {next_node_id}")
-    logger.info(f"next_node_type: {next_node_type}")
-    logger.info(f"script_execution_message_node结束")
+    logger.debug(f"历史聊天记录开始")
+    logger.debug(f"{state.get('messages', [])}")
+    logger.debug(f"历史聊天记录结束")
+    logger.debug(f"script_execution_message_node结果")
+    logger.debug(f"response: {response}")
+    logger.debug(f"next_node_id: {next_node_id}")
+    logger.debug(f"next_node_type: {next_node_type}")
+    logger.debug(f"script_execution_message_node结束")
 
     noScript = "true" if next_node_id == "script_end" else "false"
 
@@ -202,11 +204,11 @@ def script_execution_message_node(state: ConversationState) -> Dict[str, Any]:
     }
 
 def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
-    logger.info("执行剧本模式 - reaction")
+    logger.debug("执行剧本模式 - reaction")
   
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
       
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_REACTION_PROMPT | llm
@@ -222,9 +224,9 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
                 "messages": state.get("messages", [])
             }
         )
-        logger.info(f"script_execution_reaction_node开始")
-        logger.info(f"当前节点条件: {data_from_DB}")
-        logger.info(f"原始content: {response}")
+        logger.debug(f"script_execution_reaction_node开始")
+        logger.debug(f"当前节点条件: {data_from_DB}")
+        logger.debug(f"原始content: {response}")
       
         # 增强的JSON解析
         next_node_id = ""
@@ -238,21 +240,21 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
                     match = re.search(r'"next_node":\s*"([^"]*)', content)
                     if match:
                         next_node_id = match.group(1)
-                        logger.info(f"从不完整JSON中提取到next_node_id: {next_node_id}")
+                        logger.debug(f"从不完整JSON中提取到next_node_id: {next_node_id}")
             else:
                 # 尝试完整解析JSON
                 try:
                     import json
                     result = json.loads(content)
                     next_node_id = result.get("next_node", "")
-                    logger.info(f"完整JSON解析得到next_node_id: {next_node_id}")
+                    logger.debug(f"完整JSON解析得到next_node_id: {next_node_id}")
                 except json.JSONDecodeError as je:
                     logger.error(f"JSON解析失败: {je}")
                     import re
                     match = re.search(r'"next_node":\s*"([^"]*)"', content)
                     if match:
                         next_node_id = match.group(1)
-                        logger.info(f"正则提取得到next_node_id: {next_node_id}")
+                        logger.debug(f"正则提取得到next_node_id: {next_node_id}")
           
         next_node_type = get_type_by_id(state.get("script", []), next_node_id) if next_node_id else None
 
@@ -262,9 +264,9 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
         next_node_type = None
 
 
-    logger.info(f"next_node_id: {next_node_id}")
-    logger.info(f"next_node_type: {next_node_type}")
-    logger.info(f"script_execution_reaction_node结束")
+    logger.debug(f"next_node_id: {next_node_id}")
+    logger.debug(f"next_node_type: {next_node_type}")
+    logger.debug(f"script_execution_reaction_node结束")
 
     return {
         "turn_count": state.get("turn_count", 0) + 1,
@@ -275,7 +277,7 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
 def script_execution_action_node(state: ConversationState) -> Dict[str, Any]:    
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
         
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_ACTION_PROMPT | llm
@@ -324,11 +326,11 @@ def script_execution_action_node(state: ConversationState) -> Dict[str, Any]:
         next_node_id = None
         next_node_type = None
 
-    logger.info(f"script_execution_action_node结果")
-    logger.info(f"response: {response}")
-    logger.info(f"next_node_id: {next_node_id}")
-    logger.info(f"next_node_type: {next_node_type}")
-    logger.info(f"script_execution_action_node结束")
+    logger.debug(f"script_execution_action_node结果")
+    logger.debug(f"response: {response}")
+    logger.debug(f"next_node_id: {next_node_id}")
+    logger.debug(f"next_node_type: {next_node_type}")
+    logger.debug(f"script_execution_action_node结束")
 
     return {
         "messages": [ai_message],
@@ -339,7 +341,7 @@ def script_execution_action_node(state: ConversationState) -> Dict[str, Any]:
 
 def script_execution_choice_branch_node(state: ConversationState) -> Dict[str, Any]:
     try:
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
         chain = SCRIPT_EXECUTION_MODE_CHOICE_BRANCH_PROMPT | llm
 
         node = get_node_by_id(state.get("script", []), state.get("current_node_id", ""))
@@ -373,12 +375,12 @@ def script_execution_choice_branch_node(state: ConversationState) -> Dict[str, A
 
     next_node_type = get_type_by_id(state.get("script", []), next_node_id) if next_node_id else None  
 
-    logger.info(f"script_execution_choice_node结果_branch_start")
-    logger.info(f"branch_info: {branch_info}")
-    logger.info(f"response:{response}")
-    logger.info(f"⚠️next_node_id: {next_node_id}")
-    logger.info(f"⚠️next_node_type: {next_node_type}")    
-    logger.info(f"script_execution_choice_node结果_branch_end")
+    logger.debug(f"script_execution_choice_node结果_branch_start")
+    logger.debug(f"branch_info: {branch_info}")
+    logger.debug(f"response:{response}")
+    logger.debug(f"⚠️next_node_id: {next_node_id}")
+    logger.debug(f"⚠️next_node_type: {next_node_type}")    
+    logger.debug(f"script_execution_choice_node结果_branch_end")
 
     return {
         "current_node_type": next_node_type, 
@@ -388,7 +390,7 @@ def script_execution_choice_branch_node(state: ConversationState) -> Dict[str, A
 
 def script_execution_choice_ask_node(state: ConversationState) -> Dict[str, Any]:
     try:
-        llm = LLMFactory.get_model(DEEPSEEK_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
         chain = SCRIPT_EXECUTION_MODE_CHOICE_ASK_PROMPT | llm
 
         creator_background_info = state.get("creator_background", "")
@@ -418,13 +420,13 @@ def script_execution_choice_ask_node(state: ConversationState) -> Dict[str, Any]
         mock_response = "很抱歉当前无法连接到模型服务。"
         ai_message = AIMessage(content=mock_response)
 
-    logger.info(f"script_execution_choice_node结果_ask")
+    logger.debug(f"script_execution_choice_node结果_ask")
     current_node_id = state.get("current_node_id", "")
     current_node_type = state.get("current_node_type", "")
-    logger.info(f"response: {response}")
-    logger.info(f"current_node_id: {current_node_id}")
-    logger.info(f"current_node_type: {current_node_type}")
-    logger.info(f"script_execution_choice_node结束_ask")
+    logger.debug(f"response: {response}")
+    logger.debug(f"current_node_id: {current_node_id}")
+    logger.debug(f"current_node_type: {current_node_type}")
+    logger.debug(f"script_execution_choice_node结束_ask")
 
     return {
         "messages": [ai_message],

@@ -14,16 +14,13 @@ def load_script_from_examples() -> List[Dict[str, Any]]:
     从examples文件夹加载剧本JSON文件
     """
     try:
-        # 获取当前文件的绝对路径
         current_dir = os.path.dirname(os.path.abspath(__file__))
         # 构建examples/example_script.json文件的完整路径
         script_file_path = os.path.join(current_dir, 'examples', 'example_script.json')
-        
-        # 读取JSON文件内容
+
         with open(script_file_path, 'r', encoding='utf-8') as f:
             json_data = json.load(f)
-        
-        # 使用现有的load_script_from_json函数验证并返回数据
+
         return json_data
     except FileNotFoundError:
         logger.error(f"剧本文件不存在: {script_file_path}")
@@ -60,7 +57,6 @@ def get_node_text_by_id(script: List[Dict[str, Any]], node_id: str) -> Optional[
                 return node.get("parameters", {}).get("prompt")
             elif node_type == "ChoiceNode":
                 return node.get("prompt")
-            # 可以根据需要添加其他节点类型的处理
             logger.warning(f"节点类型 {node_type} 不支持获取文本内容")
             return None
     logger.warning(f"未找到节点: {node_id}")
