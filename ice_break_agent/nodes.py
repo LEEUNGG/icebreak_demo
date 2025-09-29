@@ -6,7 +6,7 @@ from typing import Dict, Any
 from langchain_core.messages import HumanMessage, AIMessage
 from script_utils import (load_script_from_examples, get_type_by_id, get_node_text_by_id, get_next_node_id, get_node_by_id)  
 from state import ConversationState
-from models import LLMFactory, DEEPSEEK_V3_1_TERMINUS_CONFIG
+from common.models import LLMFactory, DEEPSEEK_V3_1_TERMINUS_CONFIG
 from prompts import (
     ENGAGEMENT_CLASSIFIER_LEADER_PROMPT,
     ENGAGEMENT_CLASSIFIER_LISTENER_PROMPT,

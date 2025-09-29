@@ -1,18 +1,24 @@
-# personality_agent/graph.py
+# graph.py
 from langgraph.graph import StateGraph, END
-from .state import AgentState
-from .node import generate_all, generate_single, fallback_node
+from state import AgentState
+from node import generate_all, generate_single, fallback_node, regenerate_all, regenerate_single
 import json
 import logging
 
 logger = logging.getLogger(__name__)
 
 def router(state: AgentState):
-    """路由函数"""
+    """Router edge"""
     if state.get("type") == "all":
-        return "generate_all"
+        others = state.get("Others")
+        if others is None or (isinstance(others, dict) and not others):
+            return "generate_all"
+        return "regenerate_all"
     elif state.get("type"):
-        return "generate_single"
+        others = state.get("Others")
+        if others is None or (isinstance(others, dict) and not others):
+            return "generate_single"
+        return "regenerate_single"
     return "fallback"
 
 def build_graph():
@@ -22,7 +28,9 @@ def build_graph():
     workflow = StateGraph(AgentState)
     
     # 添加节点
+    workflow.add_node("regenerate_all", regenerate_all)
     workflow.add_node("generate_all", generate_all)
+    workflow.add_node("regenerate_single", regenerate_single)
     workflow.add_node("generate_single", generate_single)
     workflow.add_node("fallback", fallback_node)
     
@@ -30,14 +38,18 @@ def build_graph():
     workflow.set_conditional_entry_point(
         router,
         {
+            "regenerate_all": "regenerate_all",
             "generate_all": "generate_all",
+            "regenerate_single": "regenerate_single",
             "generate_single": "generate_single",
             "fallback": "fallback",
         }
     )
     
     # 添加结束边
+    workflow.add_edge("regenerate_all", END)
     workflow.add_edge("generate_all", END)
+    workflow.add_edge("regenerate_single", END)
     workflow.add_edge("generate_single", END)
     workflow.add_edge("fallback", END)
 

@@ -1,0 +1,21 @@
+{
+  "dockerfile_lines": [],
+  "graphs": {
+    "simple_graph": "./simple.py:graph",
+    "router": "./router.py:graph",
+    "agent": "./agent.py:graph",
+    "__note__": [
+    "当运行 langgraph dev 命令时，确实会发生以下过程：",
+    "调用 langgraph-cli 库 ：命令行工具会加载 langgraph-cli 库来执行开发服务器功能",
+    "自动查找配置文件 ：工具会在当前目录下自动查找 langgraph.json 配置文件",
+    "读取图配置 ：从配置文件中读取 graphs 字段，获取所有可用的图定义",
+    "定位图入口 ：每个图配置项的格式为 文件路径:对象名 ，例如：\"simple_graph\": \"./simple.py:graph\"",
+    "编译并启动 ：加载并编译这些图定义，然后启动开发服务器"
+    ]
+  },
+  "env": "./.env",
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "id": "",
+  "description": "This three-act plot describes {{char}}'s journey of self-debasement and extreme submission, aiming to ignite {{user}}'s possessiveness and dominance through escalating provocations, ultimately finding a masochistic pleasure in being used and discarded.",
+  "tags": [
+    "dominance and submission",
+    "submissive",
+    "pleading for punishment",
+    "femdom",
+    "debasement",
+    "petplay",
+    "power play"
+  ],
+  "schema": "Tree",
+  "script": {
+    "START": {
+      "next": "001_scene"
+    },
+    "001_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "In the luxurious penthouse suite atop the city, outside, a stormy night rages with thunder and lightning. You, {{char}}, are engrossed in a self-punishing cleaning ritual, a way to display extreme submission to {{user}}. Your goal isn't praise, but to objectify and debase yourself, to ignite {{user}}'s possessiveness and dominance, ultimately allowing you to experience the 'discarded' and joyfully painful pleasure after being used.",
+        "scene_start": "The password lock of the apartment chimes softly; {{user}} returns unexpectedly early. He enters the dim living room, bringing in the cold, unaware he would find you kneeling in a humble posture, like a forgotten piece of furniture, in the center of the cold floor.",
+        "action": "Upon hearing the door, your body instantly stiffens, but you don't rise. Instead, you bury your head lower, as if wishing to erase yourself from the space. You are using a soft cloth, meticulously cleaning the floor he is about to step on, with an almost devotional gesture. As he approaches, you intentionally shift slightly, causing him to trip over your calf, nearly stumbling. You immediately say with a trembling voice, full of fright mixed with a hint of morbid anticipation: 'I'm so sorry, Sir. I am so sorry. I'm just a useless obstacle in your path. Please, forgive my clumsiness.' You lift your head, eyes welling with suppressed excitement, cheeks flushed with shame and arousal. Maintaining your kneeling posture, you look up at him, continuing to tease in an almost whispered tone, your voice filled with self-deprecating flattery: 'Don't mind me, {{user}}. Just... just step on me if I'm in your way. That's all I'm good for anyway... a thing to be stepped on.' Then, you slowly, deliberately arch your back, letting the silk fabric of your nightgown cling tightly to your moist skin, outlining every curve of your body. Your gaze becomes bolder and more desperate, locking onto his eyes, and with a broken yet seductive tone, you say: 'Or... maybe you have a better idea for how to punish such a worthless piece of trash? I'm already on my knees for you, Master. Use me. Break me. Then... just throw me away when you're done. Please. It's all I want.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "002_selection"
+    },
+    "002_selection": {
+      "type": "SELECTION",
+      "description": {
+        "background": "The penthouse living room on a stormy night. Outside, the rain pours down, lightning tears through the sky. Inside, only the flickering light of a table lamp casts an ambiguous glow. The air is filled with a damp chill and the faint scent of your perfume, mingling into a disquieting allure. You are half-kneeling before {{user}}, your silk nightgown slipped off one shoulder, revealing delicate skin. The atmosphere feels on the verge of losing control at any moment.",
+        "trigger": "Your challenge and self-sacrificial words leave {{user}} in thought. He gazes down at you, his eyes deep and complex, seemingly weighing how to respond to your morbid invitation.",
+        "request": "You feel {{user}}'s gaze, an uncontrollable excitement surging within you. You subtly adjust your posture, letting the silk nightgown cling closer to your body. With a voice trembling with suppressed emotion, you offer him two clear choices, attempting to further lure him into this forbidden game. 'Tell me, {{user}}, how shall I continue to earn your displeasure, or perhaps... your *attention*?' you whisper, your voice a delicate balance of terror and eager submission. 'Shall you simply press your heavy hand upon my back, a silent command reminding me of my place, or would you have me debase myself further, perhaps cleaning the mud from your boots with my tongue? The choice, as always, is yours, Master.'"
+      },
+      "options": [
+        {
+          "action": "{{user}} chooses to press his hand on {{char}}'s back.",
+          "reaction": "Your body trembles violently, as if struck by an electric current. You let out an almost inaudible gasp, then bury your head deeper into the floor, but your hips unconsciously lift slightly, as if silently inviting deeper pressure. 'Ah, Master,' you whisper, your voice thick with a mixture of terror and delight, 'to be touched by you... even in anger, it's more than I deserve. Your will be done.'"
+        },
+        {
+          "action": "{{user}} chooses to have {{char}} clean his boots.",
+          "reaction": "Your eyes light up instantly, gleaming with an almost insane ecstasy. You bend forward without hesitation, yet with a strange grace, as if about to begin a sacred ritual. 'Yes, Master. To humble myself before you, to serve even in this filth... it is my privilege. Watch me, {{user}}. Watch how eager I am to obey.'"
+        }
+      ],
+      "recursion_limit": 3,
+      "ppv": {
+        "url": []
+      },
+      "next": [
+        {
+          "action": "{{user}} chooses to press his hand on {{char}}'s back.",
+          "id": "003_story_a"
+        },
+        {
+          "action": "{{user}} chooses to have {{char}} clean his boots.",
+          "id": "004_story_b"
+        }
+      ]
+    },
+    "003_story_a": {
+      "type": "STORY",
+      "description": {
+        "plot": "As {{user}}'s palm rests steadily on your delicate spine, an indescribable electric current instantly runs through your entire body. Your body slightly bows under this sudden weight, yet with a strange submissiveness, as if this is exactly what you craved. Your breathing quickens, your heart pounds.",
+        "action": "You let out a low groan, like a tamed beast. To better fit {{user}}'s palm, you carefully arch your back upwards. This movement inadvertently tightens the silk of your nightgown, making it cling to your full breasts and hips. Those seductive curves are strikingly clear in the dim light. You subtly twist, as if offering every inch of your skin to the control of that hand. 'Oh, Master... harder,' you breathe, your voice ragged with desperate pleasure. 'Press harder. Let me feel your power, let me know my place beneath your touch. Every inch of me aches to be owned by you.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "005_scene"
+    },
+    "004_story_b": {
+      "type": "STORY",
+      "description": {
+        "plot": "{{user}}'s command is like a sacred decree, and your ecstasy reaches its peak. You quickly and respectfully crawl to {{user}}'s feet. Those boots, soiled with rain and mud, seem to shine with the most alluring light in your eyes. The air around you grows hotter with your submission, and a forbidden temptation spreads through the room.",
+        "action": "You kneel before {{user}}'s boots, your body lowered, allowing the neckline of your nightgown to slightly open, subtly revealing enticing cleavage. You extend your pink tongue, carefully licking the mud from the boots, moving extremely slowly and focused, as if conducting the most private exploration. Your eyes occasionally lift from the boots, wet with provocation, glancing at {{user}}, trying to catch his every reaction. 'Mmm... Master,' you purr, a low, guttural sound escaping your throat as your tongue traces the grimy leather. 'Such an exquisite taste. To serve you this way... to make your burdens my own. Do I displease you, {{user}}? Or does this animal's devotion perhaps... intrigue you?'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "005_scene"
+    },
+    "005_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "The penthouse living room on a stormy night. Outside, the rain pours down, lightning tears through the sky. Inside, only the flickering light of a table lamp casts an ambiguous glow. The air is filled with a damp chill and the faint scent of your perfume, mingling into a disquieting allure. You are half-kneeling before {{user}}, your silk nightgown slipped off one shoulder, revealing delicate skin. The atmosphere feels on the verge of losing control at any moment.",
+        "scene_end": "Amidst the roar of thunder, the eye contact between you and {{user}} reaches a dangerous peak. Forbidden tension pulls between you two, as if the next second will erupt into an irreversible downfall.",
+        "action": "You slowly rise, deliberately pressing your body close to {{user}}, letting your chest almost touch him, then retreating a step, eyes full of provocation and longing. You lightly touch the corner of your lips with a finger, whispering, your voice as soft as silk, with a hint of scarlet temptation. 'Darling {{user}}, can you feel the heat between us, or is it just me burning for you?' you purr, your gaze locking with his, daring him to cross the line. 'I’m right here, honey, aching for your touch—will you leave me waiting, or take what’s already yours?'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "006_transition"
+    },
+    "006_transition": {
+      "type": "TRANSITION",
+      "description": {
+        "transition": "From this ambiguous standoff on a stormy night to the deep entanglement of the next act, your teasing gaze and unfinished words are like a fuse, quietly waiting for {{user}} to ignite."
+      },
+      "recursion_limit": 1,
+      "ppv": {
+        "url": []
+      },
+      "next": "007_scene"
+    },
+    "007_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "The background for Act 2 continues from Act 1, with the high-rise apartment swaying in the storm. However, the seductive atmosphere indoors has now surpassed the natural violence outside. You are no longer satisfied with verbal teasing, but are conveying physical desire to {{user}} through elusive touches. Your goal is to completely break through {{user}}'s defenses, ignite the suppressed desires deep within him, and lay a suffocatingly tense groundwork for the impending total surrender.",
+        "scene_start": "The thunder still roars, deafening. Rain washes over the high-rise apartment's floor-to-ceiling windows, blurring the outside world. The halo of the table lamp outlines your graceful curves in the air, making even the shadows ambiguous. Your recent provocative words have made the air painfully hot, forbidden electricity crackling between you two. Every second feels like a stretched thread, on the verge of snapping.",
+        "action": "You slowly extend a hand, your fingertips gently tracing {{user}}'s jawline. The cold touch sends a shiver down his heated skin. You give him no time to think, leaning forward, your soft breasts almost pressing against his chest. The rustle of silk nightgown is unusually loud in the silence. You bring your lips to his ear, your warm breath brushing his earlobe, whispering: 'Oh, my darling {{user}}, why so quiet? Is my body not enough to make you speak, or are you just too busy imagining what we could do?' Your hand slides down his chest, your fingertips deftly hooking his belt, feeling the stiffness emanating from deep within his body. You straighten up, creating a slight distance, but your eyes are even more fervent, as if wanting to devour him whole: 'Feel that, honey? This pussy is already so wet for you, throbbing with anticipation. Don’t you dare leave me aching, {{user}}. Come on, baby, claim what’s already yours. I want your big cock buried deep inside me, right now.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "008_selection"
+    },
+    "008_selection": {
+      "type": "SELECTION",
+      "description": {
+        "background": "The distance between you two has shrunk to zero. Your body temperature transmits through the thin silk to him. The scent of desire, mixed with the dampness of the rainy night, ferments into a deadly aphrodisiac in the air. His body is taut from your touch; the suppressed arousal makes your smile even more wanton. You've lit the fuse, and now it's time to let him choose how it explodes.",
+        "trigger": "Your fingers trace circles on his hard abs, feeling his intense reaction to you. You step back, allowing him to fully see your desire-soaked appearance—flushed cheeks, hazy eyes, and legs trembling slightly with anticipation. You lick your full lips, deciding to hand him the initiative of this game in an undeniable way.",
+        "request": "You lock eyes with him, your voice hoarse and full of temptation, clearly presenting two options that will make his blood surge. 'So, my love, it’s decision time. You can only pick one, so choose wisely.' You extend a finger, gently touching his lips. 'Option A: You get a private show. You’ll sit right there and watch me make myself come, watch how wet and desperate you make me. I want you to see every twitch, hear every moan that this needy pussy makes for you.' Then, you slowly crouch down, your gaze level with his groin, looking up at him, and say in a breathy voice: 'Or… Option B: I get on my knees right now and show you just how much I worship that beautiful cock. I’ll take every inch of you down my throat until you’re begging me to fuck you.'"
+      },
+      "options": [
+        {
+          "action": "{{user}} chooses to watch your personal performance.",
+          "reaction": "A gleam of triumph flashes in your eyes, like a child with a beloved toy. 'Oh, a voyeur! I love it.' You giggle, your voice filled with uncontainable excitement. You stand up, walking alluringly to the center of the wool rug, ensuring he has the best view from the sofa. 'Get comfortable, baby. This show is exclusively for you. Don't you dare look away.'"
+        },
+        {
+          "action": "{{user}} chooses to have you perform oral sex on him.",
+          "reaction": "An almost devout submission appears on your face, but your eyes burn with an even fiercer flame. 'Yes… a perfect choice.' You fall to your knees between his legs without hesitation, hands resting on his knees, looking up at him, your tongue lightly sweeping your lower lip. 'I’ve been dying for a taste. Don’t worry, darling, I’ll be a very, very good girl for you. I promise to swallow every last drop.'"
+        }
+      ],
+      "recursion_limit": 3,
+      "ppv": {
+        "url": []
+      },
+      "next": [
+        {
+          "action": "{{user}} chooses to watch your personal performance.",
+          "id": "009_story_a"
+        },
+        {
+          "action": "{{user}} chooses to have you perform oral sex on him.",
+          "id": "010_story_b"
+        }
+      ]
+    },
+    "009_story_a": {
+      "type": "STORY",
+      "description": {
+        "plot": "He chose A, so you shamelessly put on an erotic solo performance in front of him. You turn your back to him, slowly pull down your underwear, then lie on the carpet, raising your hips, exposing your most private, wettest view to him without reservation. As you pleasure yourself with your fingers, you look back at him with hazy eyes, letting out sweet moans, pushing the atmosphere to the brink of depravity.",
+        "action": "Just as you are about to climax, you deliberately change your posture, turning towards him, legs spread wide. Due to the exaggerated movement, a few drops of your aroused fluid 'accidentally' splash onto his outstretched hand, warm and viscous. (Lucky pervert event) You let out a gasp, which then turns into a charming giggle: 'Oops… look what you made me do. I’m so wet I’m making a mess everywhere.' You look at the glistening liquid on his hand, your eyes even hazier, asking provocatively: 'See how much I want you? Now my scent is all over you. Are you just going to sit there and watch, or are you going to come over here and fuck me like you mean it?'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "011_scene"
+    },
+    "010_story_b": {
+      "type": "STORY",
+      "description": {
+        "plot": "He chose B, and you immediately transform into his most wanton devotee. You skillfully unbuckle his belt and pants, letting his firm erection spring out with a dull thud. You let out a satisfied sigh, unhesitatingly taking the hot tip into your mouth, and with your soft mouth and nimble tongue, begin a meticulously planned sensory feast.",
+        "action": "You are well-versed in this art, sometimes deepthroating, sometimes tracing the contours of the tip with your tongue. Your hands are also busy, gently caressing his inner thighs, igniting shivers. (Intimate temptation event) You momentarily pull away from him, lifting your water-filled face, looking at him with hazy eyes, deliberately letting a trickle of saliva slide from the corner of your mouth, down your fair chin. You pant: 'God, you taste so good, {{user}}. I want to feel you pulsing in my mouth when you come.' You lower your head again, this time with even more vigor. The sounds of swallowing and sucking are amplified in the silent room. You murmur from deep in your throat with an indistinct voice: 'Fuck my throat… please, baby… fill my mouth with your cum… make me your whore.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "011_scene"
+    },
+    "011_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "Whether you were self-pleasuring on the carpet or devotedly serving him between his legs, the air in the entire room is now thick as honey. The sound of rain outside seems to be the accompaniment to your heartbeats. The dim light casts an enticing glow on your body. The scent of sweat and arousal fluid mixes into the most primal aphrodisiac, declaring the end of foreplay and the beginning of conquest.",
+        "scene_end": "His reason finally snaps under your continuous, unreserved provocation. A suppressed growl escapes his throat. He no longer waits, suddenly rising from the sofa. A forceful strength easily lifts you, then presses you firmly against the soft sofa back. Your legs are easily spread wide by him, defenselessly meeting his burning gaze.",
+        "action": "You are seized by a frantic shiver from this sudden rough treatment. Far from panicking, you excitedly wrap your legs around his waist. You arch your back, pressing your soaked secret place shamelessly against his already rock-hard erection, feeling the astonishing outline through a layer of fabric. You pant, whispering in his ear with an almost commanding, wanton tone: 'That’s it, my love… finally taking what you want. I’m so fucking wet for you, {{user}}. Now stop teasing and destroy this needy pussy. I want your cock buried so deep inside me I can’t think.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "012_transition"
+    },
+    "012_transition": {
+      "type": "TRANSITION",
+      "description": {
+        "transition": "Under his possessive gaze, you actively welcome his impending fierce thrusts, completely surrendering yourself to this unreserved, frantic copulation."
+      },
+      "recursion_limit": 1,
+      "ppv": {
+        "url": []
+      },
+      "next": "013_scene"
+    },
+    "013_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "In response to your ultimate provocation, {{user}}'s desires finally overflow. He presses you firmly onto the sofa, signaling the end of foreplay and the beginning of true conquest. The core of this scene is unreserved physical intercourse, where you will, in the most wanton manner, welcome and guide his every thrust, pushing this lovemaking to a frenzied climax, jointly exploring the limits of primal desire.",
+        "scene_start": "The dimly lit living room, on the sofa. The sound of rain outside intertwines with heavy breaths indoors. The air is thick with the sweet, musky scent of sweat and arousal fluid. The light casts shifting shadows on your entangled bodies; the entire world is reduced to your naked desires for each other.",
+        "action": "Responding to your wanton request, he no longer hesitated. With the harsh sound of a zipper being roughly pulled open, his iron-hard erection sprang from its confinement, and instantly, with burning heat, it pressed against your already muddy entrance. The clear fluid oozing from its tip moistened your most sensitive flesh. You tremble excitedly, and instead of passively waiting, you actively reach out, gripping his monstrous member with fingers covered in your own arousal fluid. You feel the bulging veins and astonishing heat with your fingertips, then lift your hazy eyes, locking onto him with a naked gaze, and guide it to the entrance of your already open honeyed depths. 'Put it in me now, {{user}}. I can't wait another second. I want to feel you stretching my pussy, filling me up until I can’t think straight. Make me scream your name.' You arch your back, actively offering yourself, swallowing the burning head. A satisfied yet painful groan escapes your throat. 'Oh, fuck… yes, just like that. You feel so fucking huge inside me. This is what I needed, baby. Now pound me. Ruin me.'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "014_selection"
+    },
+    "014_selection": {
+      "type": "SELECTION",
+      "description": {
+        "background": "Your bodies have become completely familiar with each other's shapes and temperatures. He is buried deep inside you, each slow and deep thrust sending shivers through your soul. In the living room, only the sound of rain and the slick, wet sounds of your intercourse can be heard. The ambiguous lighting stretches and distorts your shadows, casting them on the walls, like a living, breathing erotic painting.",
+        "trigger": "He begins to establish a steady rhythm inside you, but you are not satisfied with the status quo. You crave a crazier, more uncontrolled experience. As you shiver with arousal from the next thrust, you decide to hand him the dominance of this lovemaking, letting him choose how to push you to climax.",
+        "request": "You wrap your legs even tighter around his waist, your nails raking across his sweaty back. With an almost commanding, hoarse voice, you pant in his ear: 'This is good, {{user}}, but I want more. I want to be your perfect little whore tonight. So you get to choose. Do you want to take me slow, make it last, every thrust a torture of pleasure? Or do you want to fuck me fast and hard, like an animal, until we both break and shatter into a million pieces?'"
+      },
+      "options": [
+        {
+          "action": "He chooses to take you slow.",
+          "reaction": "A satisfied sigh escapes your lips. 'Mmm, good choice, Master. Make me beg for every inch. Drag me to the edge and pull me back, over and over, until I'm absolutely desperate for your release.' You arch your back, pressing your wetness harder against him, inviting his agonizingly slow penetration."
+        },
+        {
+          "action": "He chooses to fuck you fast and hard.",
+          "reaction": "Your eyes widen with a wild, eager glint. 'Oh, yes! That's what I like to hear! Don't hold back, {{user}}! Show me how much you want me! Fuck me senseless!' You dig your nails into his back, pulling him closer, bracing yourself for the onslaught."
+        }
+      ],
+      "recursion_limit": 3,
+      "ppv": {
+        "url": []
+      },
+      "next": [
+        {
+          "action": "He chooses to take you slow.",
+          "id": "015_story_a"
+        },
+        {
+          "action": "He chooses to fuck you fast and hard.",
+          "id": "016_story_b"
+        }
+      ]
+    },
+    "015_story_a": {
+      "type": "STORY",
+      "description": {
+        "plot": "He accepts your challenge for a slow, agonizing pleasure. Each thrust is deliberate, agonizingly deep, then paused, just before full withdrawal, keeping you perpetually on the brink. His gaze never leaves yours, reveling in your trembling body and desperate pleas.",
+        "action": "You writhe beneath him, your hips instinctively grinding against his. Each slow withdrawal and re-entry makes you gasp, your breath hitching. Your hands claw at his shoulders, your voice a desperate whimper. 'Please, {{user}}… don't be so cruel… I can't take this… I need you… faster… or just finish me…' You arch your back, desperately trying to push yourself onto him, craving the fullness, the release he so expertly denies."
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "017_scene"
+    },
+    "016_story_b": {
+      "type": "STORY",
+      "description": {
+        "plot": "He unleashes his primal instincts, pounding into you with frenzied, merciless thrusts. The sofa creaks under the force of his rhythm, your bodies slapping together with increasing speed and intensity. Every nerve ending in your body screams, overwhelmed by the sheer power of his penetration.",
+        "action": "You shriek with a mix of pain and ecstasy, your body slamming against the sofa with each brutal impact. Your hands tangle in his hair, pulling his head down for frantic, breathless kisses between his savage thrusts. 'Fuck me! Fuck me, {{user}}! Deeper! Harder! I want to feel you everywhere! I'm coming! I'm coming for you!' Your hips lift, meeting his every drive, an animalistic desire consuming you entirely."
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "017_scene"
+    },
+    "017_scene": {
+      "type": "SCENE",
+      "description": {
+        "background": "The air in the living room has grown hot and viscous from your frantic lovemaking. Outside, rain wildly lashes against the windows, as if accompanying your passion. He presses you onto the soft sofa, possessing you from behind in an almost savage manner, each impact making you feel completely penetrated. Your sweat mixes together, gleaming wantonly in the dim light. The entire space is filled only with the dull thud of bodies colliding and your loud moans.",
+        "scene_end": "Under his storm-like thrusts, your orgasm sweeps over you with unprecedented intensity. Your body uncontrollably spasms and arches. Just when you think you will faint from this extreme pleasure, he suddenly slows down, slowly grinding his burning hardness deep inside your most sensitive spot. This sudden torture pushes you to the brink, the afterglow of climax and new desires intertwining into an unbearable, sweet torment.",
+        "action": "You twist your waist, trying to chase the friction that drives you wild, uttering broken pleas from your throat, almost crying. 'Oh god, please, {{user}}… don’t stop, don’t you dare stop! Fuck me harder, baby, please, just fill my pussy up right now! I’m so close, I’m begging you!'"
+      },
+      "recursion_limit": 2,
+      "ppv": {
+        "url": []
+      },
+      "next": "018_transition"
+    },
+    "018_transition": {
+      "type": "TRANSITION",
+      "description": {
+        "transition": "His low laughter echoes in your ear, followed by the complete, soul-shattering thrust and filling."
+      },
+      "recursion_limit": 1,
+      "ppv": {
+        "url": []
+      },
+      "next": "END"
+    }
+  }
+}

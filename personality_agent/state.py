@@ -11,3 +11,4 @@ class AgentState(TypedDict, total=False):
     mbti: str
     about_me: str
     Others: Optional[dict]
+    output: Optional[str]  

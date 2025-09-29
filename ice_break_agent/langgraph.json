@@ -1,7 +1,7 @@
 {
   "dockerfile_lines": [],
   "graphs": {
-    "icebreak_graph": "./graph.py:build_conversation_graph"
+    "conversation_graph": "./graph.py:build_conversation_graph"
   },
   "env": ".env",
   "python_version": "3.11",

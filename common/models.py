@@ -3,10 +3,24 @@ LLM 模型配置模块
 支持 Google Vertex AI, 阿里云通义千问, 豆包等模型
 """
 import os
+import sys
+from pathlib import Path
 from typing import Optional, Dict, Any
 from langchain_community.chat_models.tongyi import ChatTongyi
 from langchain_openai import ChatOpenAI
 from dataclasses import dataclass
+
+# 加载.env文件，路径设置为上一级目录
+try:
+    from dotenv import load_dotenv
+    # 获取当前文件的父目录的父目录（上一级目录）
+    parent_dir = Path(__file__).resolve().parent.parent
+    env_path = parent_dir / '.env'
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path)
+except ImportError:
+    # 如果没有安装python-dotenv库，则不加载.env文件
+    pass
 
 
 @dataclass
@@ -46,7 +60,7 @@ class LLMFactory:
             max_tokens=config.max_tokens or 4096,
             default_headers={
                 "HTTP-Referer": os.getenv("YOUR_SITE_URL", "https://example.com"),
-                "X-Title": os.getenv("YOUR_SITE_NAME", "IceBreak_demo")
+                "X-Title": os.getenv("YOUR_SITE_NAME", "langgraph-demo")
             }
         )
     
@@ -93,3 +107,5 @@ OPENAI_41_CONFIG = ModelConfig(
     model_name="openai/gpt-4.1",
     temperature=1
 )
+
+OPENAI_CONFIG = OPENAI_41_CONFIG  # 为了兼容性保留旧的配置名称
