@@ -4,16 +4,18 @@
 """
 import logging
 import os
-from dotenv import load_dotenv
-from graph import build_conversation_graph
 from langchain_core.messages import AIMessage
+from .graph import build_conversation_graph
+from dotenv import load_dotenv
 load_dotenv()
+
+log_path = os.path.join(os.path.dirname(__file__), 'conversation.log')
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('conversation.log'), 
+        logging.FileHandler(log_path), 
     ]
 )
 

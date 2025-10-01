@@ -1,11 +1,5 @@
 # run.py
-import json
-from dotenv import load_dotenv
-
-# 加载 .env 文件中的环境变量
-load_dotenv()
-
-from graph import build_graph, invoke_with_json_support
+from .graph import build_graph
 
 def main():
     # 构建图

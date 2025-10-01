@@ -3,8 +3,9 @@
 构建LangGraph工作流
 """
 from langgraph.graph import StateGraph, START, END
-from state import ConversationState
-from nodes import (
+import logging
+from .state import ConversationState
+from .nodes import (
     user_input_node,
     engagement_classifier_node,
     maintain_mode_node,
@@ -16,8 +17,8 @@ from nodes import (
     script_execution_choice_ask_node,
     script_execution_action_node
 )
-from edges import should_classify, route_by_mode, route_by_node_type
-import logging
+from .edges import should_classify, route_by_mode, route_by_node_type
+
 
 logger = logging.getLogger(__name__)
 

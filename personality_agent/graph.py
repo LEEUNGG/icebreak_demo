@@ -1,9 +1,9 @@
 # graph.py
 from langgraph.graph import StateGraph, END
-from state import AgentState
-from node import generate_all, generate_single, fallback_node, regenerate_all, regenerate_single
 import json
 import logging
+from .state import AgentState
+from .node import generate_all, generate_single, fallback_node, regenerate_all, regenerate_single
 
 logger = logging.getLogger(__name__)
 

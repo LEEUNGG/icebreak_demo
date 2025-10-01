@@ -4,10 +4,12 @@
 """
 from typing import Dict, Any
 from langchain_core.messages import HumanMessage, AIMessage
-from script_utils import (load_script_from_examples, get_type_by_id, get_node_text_by_id, get_next_node_id, get_node_by_id)  
-from state import ConversationState
-from common.models import LLMFactory, DEEPSEEK_V3_1_TERMINUS_CONFIG
-from prompts import (
+import logging
+import requests
+from common.models import LLMFactory, DEEPSEEK_V3_1_CONFIG, DEEPSEEK_V3_1_CONFIG
+from .script_utils import (load_script_from_examples, get_type_by_id, get_node_text_by_id, get_next_node_id, get_node_by_id)  
+from .state import ConversationState
+from .prompts import (
     ENGAGEMENT_CLASSIFIER_LEADER_PROMPT,
     ENGAGEMENT_CLASSIFIER_LISTENER_PROMPT,
     LISTENER_MODE_PROMPT,
@@ -17,8 +19,7 @@ from prompts import (
     SCRIPT_EXECUTION_MODE_CHOICE_BRANCH_PROMPT,
     SCRIPT_EXECUTION_MODE_ACTION_PROMPT
 )
-import logging
-import requests
+
 
 logger = logging.getLogger(__name__)
 
@@ -35,8 +36,8 @@ def user_input_node(state: ConversationState) -> Dict[str, Any]:
 def engagement_classifier_node(state: ConversationState) -> Dict[str, Any]:    
     try:
         messages = state.get("messages", [])
-                
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        logger.info(f"engagement_classifier_node开始")
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
 
         if state.get("conversation_mode", "leader") == "leader":
             chain = ENGAGEMENT_CLASSIFIER_LEADER_PROMPT | llm
@@ -87,7 +88,7 @@ def maintain_mode_node(state: ConversationState) -> Dict[str, Any]:
 def listener_node(state: ConversationState) -> Dict[str, Any]:
     try:
         messages = state.get("messages", [])
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
         chain = LISTENER_MODE_PROMPT | llm
         response = chain.invoke(
             {
@@ -152,7 +153,7 @@ def determine_node_type_node(state: ConversationState) -> Dict[str, Any]:
 def script_execution_message_node(state: ConversationState) -> Dict[str, Any]:  
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
         
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_MESSAGE_PROMPT | llm
@@ -208,7 +209,7 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
   
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
       
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_REACTION_PROMPT | llm
@@ -277,7 +278,7 @@ def script_execution_reaction_node(state: ConversationState) -> Dict[str, Any]:
 def script_execution_action_node(state: ConversationState) -> Dict[str, Any]:    
     try:
         # 获取LLM
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
         
         # 构建提示词链
         chain = SCRIPT_EXECUTION_MODE_ACTION_PROMPT | llm
@@ -341,7 +342,7 @@ def script_execution_action_node(state: ConversationState) -> Dict[str, Any]:
 
 def script_execution_choice_branch_node(state: ConversationState) -> Dict[str, Any]:
     try:
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
         chain = SCRIPT_EXECUTION_MODE_CHOICE_BRANCH_PROMPT | llm
 
         node = get_node_by_id(state.get("script", []), state.get("current_node_id", ""))
@@ -390,7 +391,7 @@ def script_execution_choice_branch_node(state: ConversationState) -> Dict[str, A
 
 def script_execution_choice_ask_node(state: ConversationState) -> Dict[str, Any]:
     try:
-        llm = LLMFactory.get_model(DEEPSEEK_V3_1_TERMINUS_CONFIG)
+        llm = LLMFactory.get_model(DEEPSEEK_V3_1_CONFIG)
         chain = SCRIPT_EXECUTION_MODE_CHOICE_ASK_PROMPT | llm
 
         creator_background_info = state.get("creator_background", "")

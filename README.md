@@ -1,25 +1,40 @@
-# LangGraph Demo Project
+# LangGraph Workspace
 
-这是一个LangGraph相关项目的集合，您可以将个人编写的LangGraph项目作为子文件夹放在这里。
+A workspace containing multiple LangGraph-based projects. You can place your own LangGraph projects here as subfolders.
 
-## 项目结构
+## Project Structure
 
-- **Ice_Break/**: 原始的IceBreak演示项目
-- **personality_agent/**: 角色代理相关代码
-- **common/**: 共享模型和工具
+- **ice_break_agent/**: Original IceBreak demo project (an AI conversation agent with modes and scripted branches)
+- **personality_agent/**: Code for a personality-driven agent
+- **common/**: Shared models and utilities
+- **langgraph_academy/**: Notebooks and sample graphs for learning LangGraph (modules 0–6)
+- **other_script/**: Auxiliary scripts (e.g., content generation workflows) and sample outputs
 
-## 使用方法
+## Requirements
 
-1. 在文件系统中，将根目录重命名为您想要的名称（例如：Langgraph_projects）
-2. 添加您自己的LangGraph项目作为子文件夹
-3. 确保每个子项目有适当的依赖和配置
+- Python 3.11 or later is recommended
+- See `requirements.txt` for core dependencies (LangGraph, LangChain, etc.)
 
-## 安装依赖
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 运行项目
+If you use `pyproject.toml`, you can also install with your preferred build tool (e.g., `pip`, `uv`, or `poetry`).
 
-根据各个子项目的README或main.py文件执行相应的命令。
+## Usage
+
+1. Optionally rename the root folder to whatever you like (e.g., `langgraph-projects`).
+2. Add your own LangGraph projects as subfolders under the root.
+3. Ensure each subproject includes its own configuration and any extra dependencies.
+
+## Running
+
+Run each subproject according to its own `README` or `main.py` entry point. For example, within a subproject:
+
+```bash
+python main.py
+```
+
+For the materials in `langgraph_academy/`, open the notebooks with Jupyter, or launch the LangGraph Studio projects inside each `studio/` directory as documented there.

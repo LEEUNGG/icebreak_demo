@@ -1,6 +1,6 @@
 from typing import Literal, Union
-from state import ConversationState
 import logging
+from .state import ConversationState
 
 logger = logging.getLogger(__name__)
 
